@@ -62,4 +62,24 @@ public class ContactController {
         return "new";
     }
 
+    @PostMapping("/{id}/edit")
+    public String updateContact(@PathVariable Long id,@Validated Contact contact,BindingResult bindingResult,RedirectAttributes redirect,Model modelo) {
+        Contact contactDB = contactRepository.getById(id);
+        if(bindingResult.hasErrors()) {
+            modelo.addAttribute("contact", contact);
+            return "new";
+        }
+
+        contactDB.setFullName(contact.getFullName());
+        contactDB.setPhoneNumber(contact.getPhoneNumber());
+        contactDB.setEmail(contact.getEmail());
+        contactDB.setBirthDate(contact.getBirthDate());
+
+
+        contactRepository.save(contactDB);
+        redirect.addFlashAttribute("msgExit", "The contact has been updated successfully");
+        return "redirect:/";
+    }
+
+
 }
