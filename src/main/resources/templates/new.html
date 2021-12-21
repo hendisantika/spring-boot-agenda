@@ -16,7 +16,7 @@
     <div class="col-md6 col-lg-4">
         <h3>[[${contact.id ne null ? 'Edit contact' : 'Register new contact'}]]</h3>
         <br>
-        <form action="" method="post" th:object="${contact}">
+        <form action="/new" method="post" th:object="${contact}">
             <div class="mb-3">
                 <label for="fullName">fullName : </label> <input id="fullName"
                                                              type="text" placeholder="Enter your fullName " th:field="*{fullName}" class="form-control" th:errorClass="is-invalid">

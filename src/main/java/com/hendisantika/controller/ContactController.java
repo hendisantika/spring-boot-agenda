@@ -5,8 +5,12 @@ import com.hendisantika.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -32,9 +36,22 @@ public class ContactController {
         return "index";
     }
 
-    @GetMapping("/new")
+    @GetMapping("new")
     public String showContactRegisterForm(Model model) {
         model.addAttribute("contact", new Contact());
         return "new";
     }
+
+    @PostMapping("new")
+    public String saveNewContact(@Validated Contact contact, BindingResult bindingResult, RedirectAttributes redirect, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("contact", contact);
+            return "new";
+        }
+
+        contactRepository.save(contact);
+        redirect.addFlashAttribute("msgExit", "The contact has been added successfully");
+        return "redirect:/";
+    }
+
 }
