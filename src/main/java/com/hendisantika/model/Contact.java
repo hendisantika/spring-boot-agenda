@@ -36,7 +36,7 @@ public class Contact {
     private Integer id;
 
     @NotBlank(message = "You must enter your name")
-    private String nombre;
+    private String fullName;
 
     @NotEmpty(message = "You must enter your email")
     @Email
