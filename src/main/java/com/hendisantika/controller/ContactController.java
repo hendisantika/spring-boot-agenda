@@ -68,6 +68,7 @@ public class ContactController {
             return "new";
         }
 
+        contactDB.setId(contact.getId());
         contactDB.setFullName(contact.getFullName());
         contactDB.setPhoneNumber(contact.getPhoneNumber());
         contactDB.setEmail(contact.getEmail());
