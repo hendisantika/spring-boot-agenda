@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "You must enter your name")
     private String fullName;

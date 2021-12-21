@@ -18,8 +18,8 @@
         <br>
         <form action="/new" method="post" th:object="${contact}">
             <div class="mb-3">
-                <label for="fullName">fullName : </label> <input id="fullName"
-                                                             type="text" placeholder="Enter your fullName " th:field="*{fullName}" class="form-control" th:errorClass="is-invalid">
+                <label for="fullName">Full Name : </label> <input id="fullName"
+                                                             type="text" placeholder="Enter your Full Name " th:field="*{fullName}" class="form-control" th:errorClass="is-invalid">
 
                 <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="invalid-feedback"></div>
             </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="mb-3">
                 <label for="email">Email : </label> <input id="email" type="email"
-                                                           placeholder="Digite su email " th:field="*{email}" class="form-control" th:errorClass="is-invalid">
+                                                           placeholder="Enter your email " th:field="*{email}" class="form-control" th:errorClass="is-invalid">
 
                 <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
             </div>

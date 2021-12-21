@@ -25,25 +25,24 @@ import java.util.List;
  * Time: 10.45
  */
 @Controller
-@RequestMapping("/")
 public class ContactController {
     @Autowired
     private ContactRepository contactRepository;
 
-    @GetMapping
+    @GetMapping({"/",""})
     public String index(Model model) {
         List<Contact> contacts = contactRepository.findAll();
         model.addAttribute("contacts", contacts);
         return "index";
     }
 
-    @GetMapping("new")
+    @GetMapping("/new")
     public String showContactRegisterForm(Model model) {
         model.addAttribute("contact", new Contact());
         return "new";
     }
 
-    @PostMapping("new")
+    @PostMapping("/new")
     public String saveNewContact(@Validated Contact contact, BindingResult bindingResult, RedirectAttributes redirect, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("contact", contact);

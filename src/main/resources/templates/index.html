@@ -45,7 +45,7 @@
             <td
                     th:text="${#temporals.format(contact.birthDate,'dd/MM/YYYY')}"></td>
             <td
-                    th:text="${#temporals.format(contacto.registrationDate,'dd/MM/YYYY hh:mm a')}"></td>
+                    th:text="${#temporals.format(contact.registrationDate,'dd/MM/YYYY hh:mm a')}"></td>
             <td><a th:href="@{/{id}/edit/(id=${contact.id})}" class="btn btn-warning"><i class="fas fa-edit"></i>&nbsp;Edit</a>
                 <a href="#" onclick="deleteContact(this)" class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Delete</a>
 
