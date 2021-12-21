@@ -50,5 +50,5 @@ public class Contact {
     @NotNull(message = "You must enter your date of birth")
     private LocalDate birthDate;
 
-    private LocalDateTime registrationDate;
+    private LocalDateTime registrationDate = LocalDateTime.now();
 }
