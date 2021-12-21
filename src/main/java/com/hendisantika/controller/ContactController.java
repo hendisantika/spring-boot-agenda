@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -56,14 +55,14 @@ public class ContactController {
 
     @GetMapping("/{id}/edit")
     public String showEditFormContact(@PathVariable Long id, Model model) {
-        Contact contact = contactRepository.getById(id);
+        Contact contact = contactRepository.findById(id).get();
         model.addAttribute("contact", contact);
         return "new";
     }
 
     @PostMapping("/{id}/edit")
     public String updateContact(@PathVariable Long id,@Validated Contact contact,BindingResult bindingResult,RedirectAttributes redirect,Model modelo) {
-        Contact contactDB = contactRepository.getById(id);
+        Contact contactDB = contactRepository.findById(id).get();
         if(bindingResult.hasErrors()) {
             modelo.addAttribute("contact", contact);
             return "new";
@@ -73,7 +72,6 @@ public class ContactController {
         contactDB.setPhoneNumber(contact.getPhoneNumber());
         contactDB.setEmail(contact.getEmail());
         contactDB.setBirthDate(contact.getBirthDate());
-
 
         contactRepository.save(contactDB);
         redirect.addFlashAttribute("msgExit", "The contact has been updated successfully");
