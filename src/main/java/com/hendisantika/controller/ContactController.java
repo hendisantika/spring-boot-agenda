@@ -31,4 +31,10 @@ public class ContactController {
         model.addAttribute("contacts", contacts);
         return "index";
     }
+
+    @GetMapping("/new")
+    public String showContactRegisterForm(Model model) {
+        model.addAttribute("contact", new Contact());
+        return "new";
+    }
 }
