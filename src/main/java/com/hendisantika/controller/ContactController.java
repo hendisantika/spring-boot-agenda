@@ -81,5 +81,12 @@ public class ContactController {
         return "redirect:/";
     }
 
+    @PostMapping("/{id}/delete")
+    public String deleteContact(@PathVariable Long id,RedirectAttributes redirect) {
+        Contact contact = contactRepository.getById(id);
+        contactRepository.delete(contact);
+        redirect.addFlashAttribute("msgExit", "The contact has been successfully deleted");
+        return "redirect:/";
+    }
 
 }
